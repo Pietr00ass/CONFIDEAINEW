@@ -13,10 +13,147 @@ from PyQt6.QtWidgets import (
     QCheckBox,
     QFrame,
     QGraphicsDropShadowEffect,
+    QGraphicsOpacityEffect,
 )
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QIcon, QFont
+from PyQt6.QtCore import QEasingCurve, QPropertyAnimation, QPoint, QRect, Qt, QTimer
+from PyQt6.QtGui import QFont, QIcon, QColor
 import os
+
+
+class CardWidget(QWidget):
+    def __init__(self, accent_color, highlight_color):
+        super().__init__()
+        self.accent_color = accent_color
+        self.highlight_color = highlight_color
+        self.setAttribute(Qt.WidgetAttribute.WA_Hover, True)
+
+        self.card_layout = QVBoxLayout()
+        self.card_layout.setContentsMargins(0, 0, 0, 0)
+        self.card_layout.setSpacing(0)
+        self.setLayout(self.card_layout)
+
+        self.shadow = QGraphicsDropShadowEffect(self)
+        self.shadow.setBlurRadius(22)
+        self.shadow.setXOffset(0)
+        self.shadow.setYOffset(8)
+        self.shadow.setColor(QColor(13, 27, 42, 90))
+        self.setGraphicsEffect(self.shadow)
+
+        self.body = QWidget()
+        self.body_layout = QVBoxLayout()
+        self.body_layout.setContentsMargins(16, 16, 16, 18)
+        self.body_layout.setSpacing(12)
+        self.body.setLayout(self.body_layout)
+
+        self.body_base_style = f"""
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(13, 27, 42, 0.12);
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            background-image:
+                radial-gradient(circle at 16px 16px, rgba(45, 226, 230, 0.12), transparent 38px),
+                radial-gradient(circle at calc(100% - 16px) 16px, rgba(13, 27, 42, 0.10), transparent 38px),
+                radial-gradient(circle at 16px calc(100% - 16px), rgba(45, 226, 230, 0.10), transparent 38px),
+                radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), rgba(13, 27, 42, 0.08), transparent 38px);
+            background-repeat: no-repeat;
+        """
+
+        self.body_hover_style = f"""
+            background-color: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(13, 27, 42, 0.20);
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            background-image:
+                radial-gradient(circle at 16px 16px, rgba(45, 226, 230, 0.18), transparent 38px),
+                radial-gradient(circle at calc(100% - 16px) 16px, rgba(13, 27, 42, 0.12), transparent 38px),
+                radial-gradient(circle at 16px calc(100% - 16px), rgba(45, 226, 230, 0.14), transparent 38px),
+                radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), rgba(13, 27, 42, 0.12), transparent 38px);
+            background-repeat: no-repeat;
+        """
+
+        self.body.setStyleSheet(self.body_base_style)
+        self.body_opacity = QGraphicsOpacityEffect(self.body)
+        self.body_opacity.setOpacity(0.0)
+        self.body.setGraphicsEffect(self.body_opacity)
+
+        self.hover_duration = 200
+        self.lift_distance = 5
+        self._hover_geometry_anim = None
+        self._shadow_anims = []
+        self._intro_anims = []
+
+        self.card_layout.addWidget(self.body)
+
+    def enterEvent(self, event):
+        self.body.setStyleSheet(self.body_hover_style)
+        self.animate_shadow(target_blur=28, target_y=4)
+        self.animate_geometry(lift=True)
+        super().enterEvent(event)
+
+    def leaveEvent(self, event):
+        self.body.setStyleSheet(self.body_base_style)
+        self.animate_shadow(target_blur=22, target_y=8)
+        self.animate_geometry(lift=False)
+        super().leaveEvent(event)
+
+    def animate_shadow(self, target_blur, target_y):
+        blur_anim = QPropertyAnimation(self.shadow, b"blurRadius")
+        blur_anim.setDuration(self.hover_duration)
+        blur_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+        blur_anim.setStartValue(self.shadow.blurRadius())
+        blur_anim.setEndValue(target_blur)
+
+        y_anim = QPropertyAnimation(self.shadow, b"yOffset")
+        y_anim.setDuration(self.hover_duration)
+        y_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+        y_anim.setStartValue(self.shadow.yOffset())
+        y_anim.setEndValue(target_y)
+
+        self._shadow_anims = [blur_anim, y_anim]
+        for anim in self._shadow_anims:
+            anim.start()
+
+    def animate_geometry(self, lift=True):
+        if self._hover_geometry_anim and self._hover_geometry_anim.state() == QPropertyAnimation.Running:
+            self._hover_geometry_anim.stop()
+
+        current_geometry = self.geometry()
+        target_geometry = QRect(current_geometry)
+        if lift:
+            target_geometry.moveTop(current_geometry.top() - self.lift_distance)
+        else:
+            target_geometry.moveTop(current_geometry.top() + self.lift_distance)
+
+        self._hover_geometry_anim = QPropertyAnimation(self, b"geometry")
+        self._hover_geometry_anim.setDuration(self.hover_duration)
+        self._hover_geometry_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+        self._hover_geometry_anim.setStartValue(current_geometry)
+        self._hover_geometry_anim.setEndValue(target_geometry)
+        self._hover_geometry_anim.start()
+
+    def start_intro_animation(self, delay_ms=0):
+        QTimer.singleShot(delay_ms, self._run_intro_animation)
+
+    def _run_intro_animation(self):
+        start_pos = self.pos() + QPoint(0, 12)
+        end_pos = self.pos()
+        self.move(start_pos)
+
+        pos_anim = QPropertyAnimation(self, b"pos")
+        pos_anim.setDuration(220)
+        pos_anim.setStartValue(start_pos)
+        pos_anim.setEndValue(end_pos)
+        pos_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+
+        opacity_anim = QPropertyAnimation(self.body_opacity, b"opacity")
+        opacity_anim.setDuration(220)
+        opacity_anim.setStartValue(self.body_opacity.opacity())
+        opacity_anim.setEndValue(1.0)
+        opacity_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+
+        self._intro_anims = [pos_anim, opacity_anim]
+        for anim in self._intro_anims:
+            anim.start()
 
 class FileEncryptionApp(QMainWindow):
     def __init__(self):
@@ -140,6 +277,7 @@ class FileEncryptionApp(QMainWindow):
             heading_font=QFont(display_font_family, 16, QFont.Weight.Bold),
         )
         cards_layout.addWidget(file_card)
+        self.apply_section_animation(file_card, delay_ms=60)
 
         # Lista plików
         self.file_browser = QTreeWidget(self)
@@ -180,6 +318,7 @@ class FileEncryptionApp(QMainWindow):
             heading_font=QFont(display_font_family, 14, QFont.Weight.DemiBold),
         )
         cards_layout.addWidget(actions_card)
+        self.apply_section_animation(actions_card, delay_ms=140)
 
         # Przycisk odświeżania
         self.refresh_button = QPushButton("🔄 Odśwież listę plików")
@@ -240,6 +379,7 @@ class FileEncryptionApp(QMainWindow):
             heading_font=QFont(display_font_family, 14, QFont.Weight.DemiBold),
         )
         cards_layout.addWidget(timeline_card)
+        self.apply_section_animation(timeline_card, delay_ms=220)
 
         stages = [
             {"title": "Planowanie", "status": "plan"},
@@ -254,11 +394,7 @@ class FileEncryptionApp(QMainWindow):
         self.refresh_file_list()
 
     def create_card(self, title, icon, accent_color, highlight_color, heading_font):
-        card = QWidget()
-        card_layout = QVBoxLayout()
-        card_layout.setContentsMargins(0, 0, 0, 0)
-        card_layout.setSpacing(0)
-        card.setLayout(card_layout)
+        card = CardWidget(accent_color, highlight_color)
 
         title_bar = QWidget()
         title_bar_layout = QHBoxLayout()
@@ -281,37 +417,13 @@ class FileEncryptionApp(QMainWindow):
         title_label.setFont(heading_font)
         title_label.setStyleSheet("color: white; letter-spacing: 0.8px;")
         title_bar_layout.addWidget(title_label)
-        card_layout.addWidget(title_bar)
+        card.card_layout.insertWidget(0, title_bar)
 
-        body = QWidget()
-        body_layout = QVBoxLayout()
-        body_layout.setContentsMargins(16, 16, 16, 18)
-        body_layout.setSpacing(12)
-        body.setLayout(body_layout)
-            body.setStyleSheet(
-                f"""
-                background-color: rgba(255, 255, 255, 0.9);
-                border: 1px solid rgba(13, 27, 42, 0.12);
-                border-bottom-left-radius: 14px;
-                border-bottom-right-radius: 14px;
-                background-image:
-                    radial-gradient(circle at 16px 16px, rgba(45, 226, 230, 0.12), transparent 38px),
-                    radial-gradient(circle at calc(100% - 16px) 16px, rgba(13, 27, 42, 0.10), transparent 38px),
-                    radial-gradient(circle at 16px calc(100% - 16px), rgba(45, 226, 230, 0.10), transparent 38px),
-                    radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), rgba(13, 27, 42, 0.08), transparent 38px);
-                background-repeat: no-repeat;
-                """
-            )
-        card_layout.addWidget(body)
+        return card, card.body_layout
 
-        shadow = QGraphicsDropShadowEffect()
-        shadow.setBlurRadius(24)
-        shadow.setXOffset(0)
-        shadow.setYOffset(10)
-        shadow.setColor(Qt.GlobalColor.black)
-        card.setGraphicsEffect(shadow)
-
-        return card, body_layout
+    def apply_section_animation(self, widget, delay_ms=0):
+        if hasattr(widget, "start_intro_animation"):
+            widget.start_intro_animation(delay_ms)
 
     def create_timeline(self, stages, accent_color):
         timeline_container = QWidget()
