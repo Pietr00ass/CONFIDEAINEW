@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (
     QLabel,
     QVBoxLayout,
     QHBoxLayout,
+    QGridLayout,
     QPushButton,
     QFileDialog,
     QWidget,
@@ -166,9 +167,13 @@ class FileEncryptionApp(QMainWindow):
         self.init_ui()
 
     def init_ui(self):
+        column_count = 12
+        gutter = 16
+        vertical_spacing = 22
+
         layout = QVBoxLayout()
         layout.setContentsMargins(22, 22, 22, 22)
-        layout.setSpacing(18)
+        layout.setSpacing(vertical_spacing)
 
         display_font_family = "Playfair Display"
         text_font_family = "Inter"
@@ -199,7 +204,7 @@ class FileEncryptionApp(QMainWindow):
         header_label.setFont(QFont(display_font_family, 26, QFont.Weight.Black))
         header_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         header_label.setStyleSheet(
-            f"color: {accent_color}; text-transform: uppercase; letter-spacing: 1.2px;"
+            f"color: {accent_color}; text-transform: uppercase; letter-spacing: 1.2px; padding-top: 10px;"
         )
         layout.addWidget(header_label)
 
@@ -208,7 +213,7 @@ class FileEncryptionApp(QMainWindow):
         subheader_label.setFont(QFont(display_font_family, 18, QFont.Weight.DemiBold))
         subheader_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         subheader_label.setStyleSheet(
-            f"color: {accent_color}; letter-spacing: 0.6px; margin-bottom: 6px;"
+            f"color: {accent_color}; letter-spacing: 0.6px; margin-bottom: 10px; padding-top: 6px;"
         )
         layout.addWidget(subheader_label)
 
@@ -264,10 +269,13 @@ class FileEncryptionApp(QMainWindow):
 
         layout.addLayout(tags_layout)
 
-        cards_layout = QVBoxLayout()
-        cards_layout.setContentsMargins(0, 0, 0, 0)
-        cards_layout.setSpacing(18)
-        layout.addLayout(cards_layout)
+        cards_grid = QGridLayout()
+        cards_grid.setContentsMargins(0, vertical_spacing, 0, 0)
+        cards_grid.setHorizontalSpacing(gutter)
+        cards_grid.setVerticalSpacing(vertical_spacing)
+        for column in range(column_count):
+            cards_grid.setColumnStretch(column, 1)
+        layout.addLayout(cards_grid)
 
         file_card, file_card_body = self.create_card(
             title="Przegląd plików",
@@ -276,7 +284,7 @@ class FileEncryptionApp(QMainWindow):
             highlight_color=highlight_color,
             heading_font=QFont(display_font_family, 16, QFont.Weight.Bold),
         )
-        cards_layout.addWidget(file_card)
+        cards_grid.addWidget(file_card, 0, 0, 1, 7)
         self.apply_section_animation(file_card, delay_ms=60)
 
         # Lista plików
@@ -317,7 +325,7 @@ class FileEncryptionApp(QMainWindow):
             highlight_color=highlight_color,
             heading_font=QFont(display_font_family, 14, QFont.Weight.DemiBold),
         )
-        cards_layout.addWidget(actions_card)
+        cards_grid.addWidget(actions_card, 0, 7, 1, 5)
         self.apply_section_animation(actions_card, delay_ms=140)
 
         # Przycisk odświeżania
@@ -378,7 +386,7 @@ class FileEncryptionApp(QMainWindow):
             highlight_color=highlight_color,
             heading_font=QFont(display_font_family, 14, QFont.Weight.DemiBold),
         )
-        cards_layout.addWidget(timeline_card)
+        cards_grid.addWidget(timeline_card, 1, 0, 1, column_count)
         self.apply_section_animation(timeline_card, delay_ms=220)
 
         stages = [
