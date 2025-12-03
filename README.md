@@ -39,3 +39,10 @@ Poniższa propozycja opisuje, jak krok po kroku dołączyć komponenty AI, któr
 - **Anonimizacja/OCR**: `Cryptonet/Cryptonet.py` – funkcje `load_image`, `anonymize_image`.
 - **Szyfrowanie/Odszyfrowanie**: `Cryptonet/Cryptonet.py` – funkcje `encrypt_file`, `decrypt_file`.
 - **Walidacja haseł i logowanie**: `Cryptonet/Cryptonet.py` – sekcja walidacji haseł i autentykacji użytkownika.
+
+### Kluczowe punkty
+- ✔︎ <u>Silne hasła i polityki</u>: wymuszaj wysoką złożoność haseł oraz monitoruj ich jakość w trakcie rejestracji i logowania.
+- ✔︎ <u>Automatyczna klasyfikacja</u>: korzystaj z NLP/LLM do oznaczania wrażliwości dokumentów i sterowania trybem szyfrowania.
+- ✔︎ <u>Anonimizacja wrażliwych danych</u>: wykorzystuj OCR+NER do wykrywania oraz ukrywania danych przed zapisem lub przesłaniem.
+- ⚑ <u>Telemetria decyzji</u>: rozszerz logi o powody wyboru algorytmów i trybów szyfrowania (typ dokumentu, siła hasła, rekomendacje).
+- ⚑ <u>Modelowanie ryzyka</u>: rozwijaj reguły decyzyjne, które automatycznie wymuszą mocniejsze zabezpieczenia dla dokumentów wysokiego ryzyka.
