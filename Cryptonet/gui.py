@@ -88,6 +88,45 @@ class FileEncryptionApp(QMainWindow):
         )
         layout.addWidget(section_hint)
 
+        tags_layout = QHBoxLayout()
+        tags_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        tags_layout.setSpacing(10)
+        tags = [
+            {
+                "label": "Priorytet",
+                "background": "#ffe4e6",  # pastelowy róż
+                "color": "#7a1f2a",
+            },
+            {
+                "label": "Nowość",
+                "background": "#e0f2fe",  # pastelowy błękit
+                "color": "#0f3057",
+            },
+            {
+                "label": "Kluczowe ryzyko",
+                "background": "#fff7e0",  # pastelowy żółty
+                "color": "#5a3d00",
+            },
+        ]
+        for tag in tags:
+            tag_label = QLabel(tag["label"])
+            tag_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            tag_label.setStyleSheet(
+                f"""
+                background-color: {tag['background']};
+                color: {tag['color']};
+                padding: 6px 12px;
+                border-radius: 12px;
+                font-weight: 700;
+                letter-spacing: 0.4px;
+                text-transform: uppercase;
+                border: 1px solid rgba(13, 27, 42, 0.08);
+                """
+            )
+            tags_layout.addWidget(tag_label)
+
+        layout.addLayout(tags_layout)
+
         cards_layout = QVBoxLayout()
         cards_layout.setContentsMargins(0, 0, 0, 0)
         cards_layout.setSpacing(18)
