@@ -536,6 +536,9 @@ class FileEncryptionApp(QMainWindow):
         # Sekcja szyfrowania/dekodowania
         actions_group = QGroupBox("⚙️ Operacje")
         actions_layout = QVBoxLayout()
+        self.encrypt_button = QPushButton("🔐 Wybierz plik do zaszyfrowania")
+        self.encrypt_button.clicked.connect(self.select_file_to_encrypt)
+        actions_layout.addWidget(self.encrypt_button)
         self.encrypt_label = DragDropLabel(self, on_drop=self.handle_encrypt_drop)
         self.encrypt_label.setText("Przeciągnij pliki tutaj, aby je zaszyfrować")
         self.encrypt_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -618,6 +621,25 @@ class FileEncryptionApp(QMainWindow):
                     QMessageBox.information(self, "Sukces", f"Plik zaszyfrowano: {encrypted_path}\nKlucz zapisano: {key_path}")
                 else:
                     QMessageBox.warning(self, "Błąd", f"Nie udało się zaszyfrować pliku: {file_path}")
+
+    # Wybierz plik do zaszyfrowania przez okno dialogowe
+    def select_file_to_encrypt(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Wybierz plik do zaszyfrowania", "", "All Files (*)")
+        if not file_path:
+            return
+
+        encrypted_path, key_path = encrypt_file(
+            file_path,
+            compress=True,
+            password="secure_password",
+            use_rsa=False,
+            delete_original=self.delete_original_checkbox.isChecked(),
+        )
+
+        if encrypted_path and os.path.exists(encrypted_path):
+            QMessageBox.information(self, "Sukces", f"Plik zaszyfrowano: {encrypted_path}\nKlucz zapisano: {key_path}")
+        else:
+            QMessageBox.warning(self, "Błąd", f"Nie udało się zaszyfrować pliku: {file_path}")
 
     # Otwórz okno dialogowe odszyfrowywania
     def open_decrypt_dialog(self):
