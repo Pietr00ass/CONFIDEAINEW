@@ -11,6 +11,7 @@ from PyQt6.QtWidgets import (
     QTreeWidget,
     QTreeWidgetItem,
     QCheckBox,
+    QFrame,
     QGraphicsDropShadowEffect,
 )
 from PyQt6.QtCore import Qt
@@ -192,6 +193,25 @@ class FileEncryptionApp(QMainWindow):
             f"color: {accent_color}; font-weight: 600; padding-top: 4px;"
         )
 
+        timeline_card, timeline_card_body = self.create_card(
+            title="Linia czasu operacji",
+            icon="⏳",
+            accent_color=accent_color,
+            highlight_color=highlight_color,
+            heading_font=QFont(display_font_family, 14, QFont.Weight.DemiBold),
+        )
+        cards_layout.addWidget(timeline_card)
+
+        stages = [
+            {"title": "Planowanie", "status": "plan"},
+            {"title": "Przygotowanie pliku", "status": "w toku"},
+            {"title": "Szyfrowanie", "status": "w toku"},
+            {"title": "Weryfikacja", "status": "ukończone"},
+            {"title": "Archiwizacja", "status": "ukończone"},
+        ]
+        timeline_widget = self.create_timeline(stages, accent_color)
+        timeline_card_body.addWidget(timeline_widget)
+
         self.refresh_file_list()
 
     def create_card(self, title, icon, accent_color, highlight_color, heading_font):
@@ -239,6 +259,61 @@ class FileEncryptionApp(QMainWindow):
         card.setGraphicsEffect(shadow)
 
         return card, body_layout
+
+    def create_timeline(self, stages, accent_color):
+        timeline_container = QWidget()
+        timeline_layout = QHBoxLayout()
+        timeline_layout.setContentsMargins(10, 4, 10, 4)
+        timeline_layout.setSpacing(0)
+        timeline_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        timeline_container.setLayout(timeline_layout)
+
+        for index, stage in enumerate(stages):
+            stage_widget = QWidget()
+            stage_layout = QVBoxLayout()
+            stage_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            stage_layout.setContentsMargins(8, 4, 8, 4)
+            stage_widget.setLayout(stage_layout)
+
+            marker = QWidget()
+            marker.setFixedSize(22, 22)
+            marker.setStyleSheet(
+                f"""
+                background-color: {self.status_color(stage['status'])};
+                border: 3px solid {accent_color};
+                border-radius: 11px;
+                """
+            )
+
+            label = QLabel(f"{stage['title']}\n({stage['status']})")
+            label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            label.setStyleSheet(
+                "color: #1f2f46; font-weight: 600; letter-spacing: 0.3px; padding-top: 6px;"
+            )
+
+            stage_layout.addWidget(marker)
+            stage_layout.addWidget(label)
+            timeline_layout.addWidget(stage_widget)
+
+            if index < len(stages) - 1:
+                connector = QFrame()
+                connector.setFrameShape(QFrame.Shape.HLine)
+                connector.setFixedHeight(3)
+                connector.setFixedWidth(70)
+                connector.setStyleSheet(
+                    f"background-color: {accent_color}; border: 1px solid {accent_color};"
+                )
+                timeline_layout.addWidget(connector)
+
+        return timeline_container
+
+    def status_color(self, status):
+        status_styles = {
+            "plan": "#cbd5e1",  # jasny szary
+            "w toku": "#2de2e6",  # turkus (highlight)
+            "ukończone": "#2ecc71",  # zieleń sukcesu
+        }
+        return status_styles.get(status, "#cbd5e1")
 
     def refresh_file_list(self):
         self.file_browser.clear()
