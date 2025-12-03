@@ -266,7 +266,15 @@ class FileEncryptionApp(QMainWindow):
         title_bar_layout.setSpacing(8)
         title_bar.setLayout(title_bar_layout)
         title_bar.setStyleSheet(
-            f"background-color: {accent_color}; border-top-left-radius: 14px; border-top-right-radius: 14px;"
+            f"""
+            background-color: {accent_color};
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            background-image:
+                radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.18), transparent 32px),
+                radial-gradient(circle at calc(100% - 12px) 12px, rgba(45, 226, 230, 0.18), transparent 32px);
+            background-repeat: no-repeat;
+            """
         )
 
         title_label = QLabel(f"{icon} {title}")
@@ -280,14 +288,20 @@ class FileEncryptionApp(QMainWindow):
         body_layout.setContentsMargins(16, 16, 16, 18)
         body_layout.setSpacing(12)
         body.setLayout(body_layout)
-        body.setStyleSheet(
-            f"""
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(13, 27, 42, 0.12);
-            border-bottom-left-radius: 14px;
-            border-bottom-right-radius: 14px;
-            """
-        )
+            body.setStyleSheet(
+                f"""
+                background-color: rgba(255, 255, 255, 0.9);
+                border: 1px solid rgba(13, 27, 42, 0.12);
+                border-bottom-left-radius: 14px;
+                border-bottom-right-radius: 14px;
+                background-image:
+                    radial-gradient(circle at 16px 16px, rgba(45, 226, 230, 0.12), transparent 38px),
+                    radial-gradient(circle at calc(100% - 16px) 16px, rgba(13, 27, 42, 0.10), transparent 38px),
+                    radial-gradient(circle at 16px calc(100% - 16px), rgba(45, 226, 230, 0.10), transparent 38px),
+                    radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), rgba(13, 27, 42, 0.08), transparent 38px);
+                background-repeat: no-repeat;
+                """
+            )
         card_layout.addWidget(body)
 
         shadow = QGraphicsDropShadowEffect()
