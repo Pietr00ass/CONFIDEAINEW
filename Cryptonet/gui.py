@@ -28,6 +28,12 @@ class FileEncryptionApp(QMainWindow):
 
     def init_ui(self):
         layout = QVBoxLayout()
+        layout.setContentsMargins(22, 22, 22, 22)
+        layout.setSpacing(18)
+
+        display_font_family = "Playfair Display"
+        text_font_family = "Inter"
+
         central_widget = QWidget()
         central_widget.setLayout(layout)
         central_widget.setStyleSheet(
@@ -37,7 +43,12 @@ class FileEncryptionApp(QMainWindow):
                 stop: 0 #f9fbff,
                 stop: 1 #eef3f8
             );
+            font-family: '%s', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6em;
+            color: #0d1b2a;
             """
+            % text_font_family
         )
         self.setCentralWidget(central_widget)
 
@@ -46,16 +57,40 @@ class FileEncryptionApp(QMainWindow):
 
         # Nagłówek
         header_label = QLabel("🔒 Cryptonet - Bezpieczne szyfrowanie plików")
-        header_label.setFont(QFont("Arial", 18, QFont.Weight.Bold))
+        header_label.setFont(QFont(display_font_family, 26, QFont.Weight.Black))
         header_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         header_label.setStyleSheet(
-            f"color: {accent_color}; text-transform: uppercase; letter-spacing: 1px;"
+            f"color: {accent_color}; text-transform: uppercase; letter-spacing: 1.2px;"
         )
         layout.addWidget(header_label)
+
+        # Podtytuł (H2)
+        subheader_label = QLabel("Twoja bezpieczna przestrzeń do szyfrowania plików")
+        subheader_label.setFont(QFont(display_font_family, 18, QFont.Weight.DemiBold))
+        subheader_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        subheader_label.setStyleSheet(
+            f"color: {accent_color}; letter-spacing: 0.6px; margin-bottom: 6px;"
+        )
+        layout.addWidget(subheader_label)
+
+        # Opis sekcji (H3)
+        section_hint = QLabel(
+            "Korzystaj z panelu poniżej, aby przeglądać pliki i uruchamiać bezpieczne operacje."
+        )
+        hint_font = QFont(text_font_family, 11)
+        hint_font.setWeight(QFont.Weight.Medium)
+        section_hint.setFont(hint_font)
+        section_hint.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        section_hint.setStyleSheet(
+            "color: #1f2f46; letter-spacing: 0.3px; margin-bottom: 14px;"
+        )
+        layout.addWidget(section_hint)
 
         # Sekcja konspektu z półprzezroczystym panelem
         overview_panel = QWidget()
         overview_panel_layout = QVBoxLayout()
+        overview_panel_layout.setContentsMargins(18, 18, 18, 18)
+        overview_panel_layout.setSpacing(14)
         overview_panel.setLayout(overview_panel_layout)
         overview_panel.setStyleSheet(
             """
@@ -73,6 +108,13 @@ class FileEncryptionApp(QMainWindow):
         overview_panel.setGraphicsEffect(shadow)
         layout.addWidget(overview_panel)
 
+        list_heading = QLabel("Przegląd plików")
+        list_heading.setFont(QFont(display_font_family, 16, QFont.Weight.Bold))
+        list_heading.setStyleSheet(
+            f"color: {accent_color}; text-transform: uppercase; letter-spacing: 0.6px;"
+        )
+        overview_panel_layout.addWidget(list_heading)
+
         # Lista plików
         self.file_browser = QTreeWidget(self)
         self.file_browser.setHeaderLabels(["Nazwa pliku"])
@@ -82,6 +124,10 @@ class FileEncryptionApp(QMainWindow):
                 border: 1px solid rgba(13, 27, 42, 0.22);
                 background-color: rgba(255, 255, 255, 0.92);
                 border-radius: 8px;
+                padding: 6px;
+                font-family: '{text_font_family}', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+                font-size: 10.5pt;
+                line-height: 1.5em;
             }}
             QHeaderView::section {{
                 background: {accent_color};
@@ -99,6 +145,13 @@ class FileEncryptionApp(QMainWindow):
         )
         self.file_browser.itemDoubleClicked.connect(self.on_file_selected)
         overview_panel_layout.addWidget(self.file_browser)
+
+        action_heading = QLabel("Akcje szyfrowania")
+        action_heading.setFont(QFont(display_font_family, 14, QFont.Weight.DemiBold))
+        action_heading.setStyleSheet(
+            f"color: {accent_color}; letter-spacing: 0.4px; margin-top: 4px;"
+        )
+        overview_panel_layout.addWidget(action_heading)
 
         # Przycisk odświeżania
         self.refresh_button = QPushButton("🔄 Odśwież listę plików")
@@ -128,6 +181,9 @@ class FileEncryptionApp(QMainWindow):
                 border-radius: 10px;
                 font-weight: 600;
                 border: 2px solid transparent;
+                font-family: '{text_font_family}', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+                font-size: 11pt;
+                letter-spacing: 0.3px;
             }}
             QPushButton:hover {{
                 background: {highlight_color};
