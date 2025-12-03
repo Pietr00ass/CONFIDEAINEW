@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import (
     QMainWindow,
     QLabel,
     QVBoxLayout,
+    QHBoxLayout,
     QPushButton,
     QFileDialog,
     QWidget,
@@ -86,34 +87,19 @@ class FileEncryptionApp(QMainWindow):
         )
         layout.addWidget(section_hint)
 
-        # Sekcja konspektu z półprzezroczystym panelem
-        overview_panel = QWidget()
-        overview_panel_layout = QVBoxLayout()
-        overview_panel_layout.setContentsMargins(18, 18, 18, 18)
-        overview_panel_layout.setSpacing(14)
-        overview_panel.setLayout(overview_panel_layout)
-        overview_panel.setStyleSheet(
-            """
-            background-color: rgba(255, 255, 255, 0.78);
-            border: 1px solid rgba(13, 27, 42, 0.18);
-            border-radius: 12px;
-            padding: 14px;
-            """
-        )
-        shadow = QGraphicsDropShadowEffect()
-        shadow.setBlurRadius(18)
-        shadow.setXOffset(0)
-        shadow.setYOffset(10)
-        shadow.setColor(Qt.GlobalColor.black)
-        overview_panel.setGraphicsEffect(shadow)
-        layout.addWidget(overview_panel)
+        cards_layout = QVBoxLayout()
+        cards_layout.setContentsMargins(0, 0, 0, 0)
+        cards_layout.setSpacing(18)
+        layout.addLayout(cards_layout)
 
-        list_heading = QLabel("Przegląd plików")
-        list_heading.setFont(QFont(display_font_family, 16, QFont.Weight.Bold))
-        list_heading.setStyleSheet(
-            f"color: {accent_color}; text-transform: uppercase; letter-spacing: 0.6px;"
+        file_card, file_card_body = self.create_card(
+            title="Przegląd plików",
+            icon="📂",
+            accent_color=accent_color,
+            highlight_color=highlight_color,
+            heading_font=QFont(display_font_family, 16, QFont.Weight.Bold),
         )
-        overview_panel_layout.addWidget(list_heading)
+        cards_layout.addWidget(file_card)
 
         # Lista plików
         self.file_browser = QTreeWidget(self)
@@ -144,33 +130,35 @@ class FileEncryptionApp(QMainWindow):
             """
         )
         self.file_browser.itemDoubleClicked.connect(self.on_file_selected)
-        overview_panel_layout.addWidget(self.file_browser)
+        file_card_body.addWidget(self.file_browser)
 
-        action_heading = QLabel("Akcje szyfrowania")
-        action_heading.setFont(QFont(display_font_family, 14, QFont.Weight.DemiBold))
-        action_heading.setStyleSheet(
-            f"color: {accent_color}; letter-spacing: 0.4px; margin-top: 4px;"
+        actions_card, actions_card_body = self.create_card(
+            title="Akcje szyfrowania",
+            icon="⚙️",
+            accent_color=accent_color,
+            highlight_color=highlight_color,
+            heading_font=QFont(display_font_family, 14, QFont.Weight.DemiBold),
         )
-        overview_panel_layout.addWidget(action_heading)
+        cards_layout.addWidget(actions_card)
 
         # Przycisk odświeżania
         self.refresh_button = QPushButton("🔄 Odśwież listę plików")
         self.refresh_button.clicked.connect(self.refresh_file_list)
-        overview_panel_layout.addWidget(self.refresh_button)
+        actions_card_body.addWidget(self.refresh_button)
 
         # Przycisk szyfrowania
         self.encrypt_button = QPushButton("🔐 Szyfruj plik")
         self.encrypt_button.clicked.connect(self.encrypt_file)
-        overview_panel_layout.addWidget(self.encrypt_button)
+        actions_card_body.addWidget(self.encrypt_button)
 
         # Przycisk odszyfrowywania
         self.decrypt_button = QPushButton("🔓 Odszyfruj plik")
         self.decrypt_button.clicked.connect(self.decrypt_file)
-        overview_panel_layout.addWidget(self.decrypt_button)
+        actions_card_body.addWidget(self.decrypt_button)
 
         # Opcja usuwania pliku
         self.delete_original_checkbox = QCheckBox("🗑️ Usuń oryginalny plik po szyfrowaniu")
-        overview_panel_layout.addWidget(self.delete_original_checkbox)
+        actions_card_body.addWidget(self.delete_original_checkbox)
 
         button_style = (
             f"""
@@ -205,6 +193,52 @@ class FileEncryptionApp(QMainWindow):
         )
 
         self.refresh_file_list()
+
+    def create_card(self, title, icon, accent_color, highlight_color, heading_font):
+        card = QWidget()
+        card_layout = QVBoxLayout()
+        card_layout.setContentsMargins(0, 0, 0, 0)
+        card_layout.setSpacing(0)
+        card.setLayout(card_layout)
+
+        title_bar = QWidget()
+        title_bar_layout = QHBoxLayout()
+        title_bar_layout.setContentsMargins(14, 12, 14, 12)
+        title_bar_layout.setSpacing(8)
+        title_bar.setLayout(title_bar_layout)
+        title_bar.setStyleSheet(
+            f"background-color: {accent_color}; border-top-left-radius: 14px; border-top-right-radius: 14px;"
+        )
+
+        title_label = QLabel(f"{icon} {title}")
+        title_label.setFont(heading_font)
+        title_label.setStyleSheet("color: white; letter-spacing: 0.8px;")
+        title_bar_layout.addWidget(title_label)
+        card_layout.addWidget(title_bar)
+
+        body = QWidget()
+        body_layout = QVBoxLayout()
+        body_layout.setContentsMargins(16, 16, 16, 18)
+        body_layout.setSpacing(12)
+        body.setLayout(body_layout)
+        body.setStyleSheet(
+            f"""
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(13, 27, 42, 0.12);
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            """
+        )
+        card_layout.addWidget(body)
+
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(24)
+        shadow.setXOffset(0)
+        shadow.setYOffset(10)
+        shadow.setColor(Qt.GlobalColor.black)
+        card.setGraphicsEffect(shadow)
+
+        return card, body_layout
 
     def refresh_file_list(self):
         self.file_browser.clear()
