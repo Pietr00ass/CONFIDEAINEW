@@ -1,0 +1,305 @@
+2025-01-16 17:26:40,762 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx
+2025-01-16 17:26:40,763 - Wygenerowano klucz AES: 37738700c23d1a0435507cbe6b8a4db0820b507c5020c71f9e549f0fadaa55c0
+2025-01-16 17:26:40,763 - Wygenerowano IV: 7c31aefffd8d0e1e0fb9250c2f07a4e7
+2025-01-16 17:26:40,764 - Odczytano plik do zaszyfrowania: 57593 bajtów
+2025-01-16 17:26:40,772 - Zaszyfrowano dane: 57593 bajtów
+2025-01-16 17:26:40,773 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx.enc
+2025-01-16 17:26:40,774 - Wygenerowano HMAC: 22c817f50d803fd015bb167499f37456670cfd4694b45d49f197b09a8ce25fb7
+2025-01-16 17:26:40,782 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx.enc.hmac
+2025-01-16 17:26:40,782 - Wygenerowano identyfikator pliku: c8ddfbb38ce0c38ff8dc74391ce3ed624578926f93626e851bdb32ea57507c64
+2025-01-16 17:26:40,783 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx.key
+2025-01-16 17:26:55,650 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx.enc
+2025-01-16 17:26:55,651 - Odczytano identyfikator pliku: c8ddfbb38ce0c38ff8dc74391ce3ed624578926f93626e851bdb32ea57507c64
+2025-01-16 17:26:55,651 - Odczytano klucz AES: 37738700c23d1a0435507cbe6b8a4db0820b507c5020c71f9e549f0fadaa55c0
+2025-01-16 17:26:55,651 - Odczytano klucz HMAC: ff9f14333e78a5a407b006dabcc435f10402d1d989488ede3eb8b440ecc67b89
+2025-01-16 17:26:55,651 - Wygenerowano identyfikator pliku: c8ddfbb38ce0c38ff8dc74391ce3ed624578926f93626e851bdb32ea57507c64
+2025-01-16 17:26:55,651 - Wygenerowano aktualny identyfikator pliku: c8ddfbb38ce0c38ff8dc74391ce3ed624578926f93626e851bdb32ea57507c64
+2025-01-16 17:26:55,652 - Odczytano zaszyfrowany plik: 57609 bajtów
+2025-01-16 17:26:55,652 - Odczytano IV: 7c31aefffd8d0e1e0fb9250c2f07a4e7
+2025-01-16 17:26:55,652 - Odczytano zaszyfrowane dane: 57593 bajtów
+2025-01-16 17:26:55,658 - Odczytano HMAC: 22c817f50d803fd015bb167499f37456670cfd4694b45d49f197b09a8ce25fb7
+2025-01-16 17:26:55,658 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-16 17:26:55,659 - Odszyfrowano dane: 57593 bajtów
+2025-01-16 17:26:55,659 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx
+2025-01-16 17:27:21,027 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx.enc
+2025-01-16 17:27:21,027 - Odczytano identyfikator pliku: c8ddfbb38ce0c38ff8dc74391ce3ed624578926f93626e851bdb32ea57507c64
+2025-01-16 17:27:21,027 - Odczytano klucz AES: 37738700c23d1a0435507cbe6b8a4db0820b507c5020c71f9e549f0fadaa55c0
+2025-01-16 17:27:21,027 - Odczytano klucz HMAC: ff9f14333e78a5a407b006dabcc435f10402d1d989488ede3eb8b440ecc67b89
+2025-01-16 17:27:21,028 - B³¹d podczas odszyfrowywania pliku C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx.enc: [Errno 2] No such file or directory: 'C:/Users/Pietr00/Desktop/Test/1/Test/Scenariusz problemu Piotr Kurasz.docx'
+2025-01-16 17:33:05,673 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:33:05,674 - Wygenerowano klucz AES: 67c163c5fb0f17d4cad6eb21090449a026aa7c39862fab543539196bfaebb58d
+2025-01-16 17:33:05,674 - Wygenerowano IV: b68df447afb7304a05777e875bafad61
+2025-01-16 17:33:05,684 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 17:33:05,693 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 17:33:05,694 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:33:05,694 - Wygenerowano HMAC: 262d694fc7306ea6f7367a5378bd3471657f7c4b2c7bb851875ca7345dc0b28b
+2025-01-16 17:33:05,694 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 17:33:05,695 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:33:05,695 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 17:33:17,893 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:33:17,893 - Wygenerowano klucz AES: 819e26794b93e2231761af31a894fe466f2d215db432fb62c6ede57c25295386
+2025-01-16 17:33:17,893 - Wygenerowano IV: c07fc709111c5d969255204b22a0238d
+2025-01-16 17:33:17,894 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 17:33:17,894 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 17:33:17,894 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:33:17,894 - Wygenerowano HMAC: 58aec10ea0fd6114ba3948677a27f3d9a0baf75cb389744a8810b57b7640f17d
+2025-01-16 17:33:17,895 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 17:33:17,895 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:33:17,896 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 17:33:17,896 - Usuniêto oryginalny plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:33:30,832 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/2/2.txt.enc
+2025-01-16 17:33:30,832 - Odczytano identyfikator pliku: 05f13e332111a4fcb79d2b8717d34b3c7dfdf1d9a96ec66eaf460e7a54e351f1
+2025-01-16 17:33:30,832 - Odczytano klucz AES: e1dfc8ce670136e1c7ed2dbd31b3bb3657882089f0a4f21943369a303a57861d
+2025-01-16 17:33:30,832 - Odczytano klucz HMAC: 93cd64c108b596066d856b4af73aa4ee2c99b14247e7400bed7b670d0c3d08b9
+2025-01-16 17:33:30,833 - B³¹d podczas odszyfrowywania pliku C:/Users/Pietr00/Desktop/Test/2/2.txt.enc: [Errno 2] No such file or directory: 'C:/Users/Pietr00/Desktop/Test/2/2.txt'
+2025-01-16 17:36:41,911 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/2/2.txt.enc
+2025-01-16 17:36:41,913 - Odczytano identyfikator pliku: 05f13e332111a4fcb79d2b8717d34b3c7dfdf1d9a96ec66eaf460e7a54e351f1
+2025-01-16 17:36:41,913 - Odczytano klucz AES: e1dfc8ce670136e1c7ed2dbd31b3bb3657882089f0a4f21943369a303a57861d
+2025-01-16 17:36:41,913 - Odczytano klucz HMAC: 93cd64c108b596066d856b4af73aa4ee2c99b14247e7400bed7b670d0c3d08b9
+2025-01-16 17:36:41,913 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-16 17:36:41,913 - Odczytano zaszyfrowany plik: 137 bajtów
+2025-01-16 17:36:41,913 - Odczytano IV: ab98204df94aa53e0a69cbbe57abf4fe
+2025-01-16 17:36:41,914 - Odczytano zaszyfrowane dane: 121 bajtów
+2025-01-16 17:36:41,928 - Odczytano HMAC: f60fee0bfbd9c25bafc984c68bce548f3169f34d0334fdbbedd5277b2bd27e1b
+2025-01-16 17:36:41,937 - B³¹d weryfikacji HMAC: Signature did not match digest.
+2025-01-16 17:36:53,297 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:36:53,297 - Odczytano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:36:53,297 - Odczytano klucz AES: 819e26794b93e2231761af31a894fe466f2d215db432fb62c6ede57c25295386
+2025-01-16 17:36:53,297 - Odczytano klucz HMAC: d5cc36416f68251f93da9dd0d53c66dbf27fe49e43296975134d05443373764a
+2025-01-16 17:36:53,298 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-16 17:36:53,298 - Odczytano zaszyfrowany plik: 5648 bajtów
+2025-01-16 17:36:53,298 - Odczytano IV: c07fc709111c5d969255204b22a0238d
+2025-01-16 17:36:53,298 - Odczytano zaszyfrowane dane: 5632 bajtów
+2025-01-16 17:36:53,308 - Odczytano HMAC: 58aec10ea0fd6114ba3948677a27f3d9a0baf75cb389744a8810b57b7640f17d
+2025-01-16 17:36:53,308 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-16 17:36:53,310 - Odszyfrowano dane: 5632 bajtów
+2025-01-16 17:36:53,311 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:37:12,364 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:37:12,365 - Wygenerowano klucz AES: 3f4a8854ec7df8ff7866146a7d13306a5c856aec7add452a55cc4a1398e4cdb1
+2025-01-16 17:37:12,365 - Wygenerowano IV: d96bd92bb44499afbe7bdecd4a3db342
+2025-01-16 17:37:12,365 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 17:37:12,365 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 17:37:12,366 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:37:12,366 - Wygenerowano HMAC: 59ea502f53592800d7a85931afc77041dc9c1d43a881facaf90822ffa65be9a9
+2025-01-16 17:37:12,366 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 17:37:12,366 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:37:12,367 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:37:12,375 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 17:37:12,376 - Usuniêto oryginalny plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:37:23,162 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:37:23,163 - Odczytano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:37:23,163 - Odczytano klucz AES: 3f4a8854ec7df8ff7866146a7d13306a5c856aec7add452a55cc4a1398e4cdb1
+2025-01-16 17:37:23,163 - Odczytano klucz HMAC: f1b327c01986cd587c71bf2c85f8f3aea20be9f85a54e9f933374771ecac74f0
+2025-01-16 17:37:23,163 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-16 17:37:23,163 - Odczytano zaszyfrowany plik: 5648 bajtów
+2025-01-16 17:37:23,163 - Odczytano IV: d96bd92bb44499afbe7bdecd4a3db342
+2025-01-16 17:37:23,163 - Odczytano zaszyfrowane dane: 5632 bajtów
+2025-01-16 17:37:23,169 - Odczytano HMAC: 59ea502f53592800d7a85931afc77041dc9c1d43a881facaf90822ffa65be9a9
+2025-01-16 17:37:23,169 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-16 17:37:23,169 - Odszyfrowano dane: 5632 bajtów
+2025-01-16 17:37:23,170 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:37:39,420 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:37:39,420 - Wygenerowano klucz AES: 4e2add55c23605847f3728e7ab1e8cde80957960b3eee47ea2dfd4d9d930808d
+2025-01-16 17:37:39,420 - Wygenerowano IV: 6724464d32ace66044e4c825d3884e0f
+2025-01-16 17:37:39,421 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 17:37:39,421 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 17:37:39,422 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:37:39,422 - Wygenerowano HMAC: c7cd36089152b5a7ba0fffc0d6570e7149510c5e5018e25f179ea28c361fceb1
+2025-01-16 17:37:39,430 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 17:37:39,431 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:37:39,431 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:37:39,431 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 17:37:39,432 - Usuniêto oryginalny plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:37:48,848 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:37:48,849 - Odczytano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:37:48,849 - Odczytano klucz AES: 4e2add55c23605847f3728e7ab1e8cde80957960b3eee47ea2dfd4d9d930808d
+2025-01-16 17:37:48,849 - Odczytano klucz HMAC: 037284ac54e5da7c0d26fbe889d4770ceeace199fa5da5a2e4af569ba8d99d4f
+2025-01-16 17:37:48,849 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-16 17:37:48,849 - Odczytano zaszyfrowany plik: 5648 bajtów
+2025-01-16 17:37:48,849 - Odczytano IV: 6724464d32ace66044e4c825d3884e0f
+2025-01-16 17:37:48,849 - Odczytano zaszyfrowane dane: 5632 bajtów
+2025-01-16 17:37:48,857 - Odczytano HMAC: c7cd36089152b5a7ba0fffc0d6570e7149510c5e5018e25f179ea28c361fceb1
+2025-01-16 17:37:48,857 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-16 17:37:48,857 - Odszyfrowano dane: 5632 bajtów
+2025-01-16 17:37:48,858 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:55:23,525 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:55:23,526 - Wygenerowano klucz AES: a55e36fd731321f7f10fb2641816461ed4943299798a658a4228c07a7047e29f
+2025-01-16 17:55:23,526 - Wygenerowano IV: 1b2b51529ecb99d484aa7ceebe214776
+2025-01-16 17:55:23,527 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 17:55:23,536 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 17:55:23,536 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:55:23,537 - Wygenerowano HMAC: 2d5cc6b941ba89ffc8a164a3eedb485d0ef25acdafeef0de27ad95ae23b68736
+2025-01-16 17:55:23,537 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 17:55:23,537 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:55:23,537 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:55:23,538 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 17:55:23,538 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:55:34,300 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:55:34,300 - Odczytano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:55:34,300 - Odczytano klucz AES: a55e36fd731321f7f10fb2641816461ed4943299798a658a4228c07a7047e29f
+2025-01-16 17:55:34,300 - Odczytano klucz HMAC: 9a1f4e49d365a31635de88f769ad4798800513456e72debafca6f5dd91d96e5b
+2025-01-16 17:55:34,300 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-16 17:55:34,301 - Odczytano zaszyfrowany plik: 5648 bajtów
+2025-01-16 17:55:34,301 - Odczytano IV: 1b2b51529ecb99d484aa7ceebe214776
+2025-01-16 17:55:34,301 - Odczytano zaszyfrowane dane: 5632 bajtów
+2025-01-16 17:55:34,307 - Odczytano HMAC: 2d5cc6b941ba89ffc8a164a3eedb485d0ef25acdafeef0de27ad95ae23b68736
+2025-01-16 17:55:34,307 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-16 17:55:34,307 - Odszyfrowano dane: 5632 bajtów
+2025-01-16 17:55:34,308 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:55:34,308 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 17:55:34,309 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 17:55:34,309 - Usuniêto pliki klucza i HMAC.
+2025-01-16 17:55:49,161 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:55:49,161 - Wygenerowano klucz AES: c1c50e27dfb3ce36bd9ba7e173b9eed3695fea84af3813d73d47358ff4fde337
+2025-01-16 17:55:49,161 - Wygenerowano IV: d836ece988d3a8f0f7920bb7cedc7232
+2025-01-16 17:55:49,162 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 17:55:49,162 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 17:55:49,163 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:55:49,163 - Wygenerowano HMAC: 112ab8ae3fdd4251148074c917e8baf04c4341ca5004e2aa3e5058540cebbb3d
+2025-01-16 17:55:49,163 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 17:55:49,164 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:55:49,164 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:55:49,164 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 17:55:49,165 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:57:09,207 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 17:57:09,207 - Odczytano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 17:57:09,207 - Odczytano klucz AES: c1c50e27dfb3ce36bd9ba7e173b9eed3695fea84af3813d73d47358ff4fde337
+2025-01-16 17:57:09,207 - Odczytano klucz HMAC: 56b4be346ff5181f5c6a8f2180c955eb4bc20ddd2e9156637c55289e52f2821c
+2025-01-16 17:57:09,208 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-16 17:57:09,208 - Odczytano zaszyfrowany plik: 5648 bajtów
+2025-01-16 17:57:09,208 - Odczytano IV: d836ece988d3a8f0f7920bb7cedc7232
+2025-01-16 17:57:09,208 - Odczytano zaszyfrowane dane: 5632 bajtów
+2025-01-16 17:57:09,214 - Odczytano HMAC: 112ab8ae3fdd4251148074c917e8baf04c4341ca5004e2aa3e5058540cebbb3d
+2025-01-16 17:57:09,214 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-16 17:57:09,214 - Odszyfrowano dane: 5632 bajtów
+2025-01-16 17:57:09,214 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 17:57:09,215 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 17:57:09,215 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 17:57:09,215 - Usuniêto pliki klucza i HMAC.
+2025-01-16 18:01:41,613 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 18:01:41,614 - Wygenerowano klucz AES: 9de61fb242657aae0fddea817e3f8a78c8ef17632124710bb9fc8a65ed1c31f2
+2025-01-16 18:01:41,615 - Wygenerowano IV: e91430248054a3eaca3a71a281765d13
+2025-01-16 18:01:41,616 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 18:01:41,624 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 18:01:41,625 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 18:01:41,625 - Wygenerowano HMAC: 1e2bfbda7266c62cb384582483eec865156b7fffc6c36c3dd16a7bce26cb8905
+2025-01-16 18:01:41,626 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 18:01:41,626 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:01:41,626 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:01:41,627 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 18:01:53,631 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 18:01:53,631 - Wygenerowano klucz AES: d23a771a34be7b551051212d3fc169a692026413ec03a0ea59ca8189785e938d
+2025-01-16 18:01:53,631 - Wygenerowano IV: a9811d3b820026527dbf57f97dbba733
+2025-01-16 18:01:53,631 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 18:01:53,631 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 18:01:53,632 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 18:01:53,632 - Wygenerowano HMAC: 00128926adb4897ed59d4285c2573fb0cf891be21235b67b0372f4abd0e0e1c8
+2025-01-16 18:01:53,632 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 18:01:53,633 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:01:53,633 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:01:53,633 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 18:01:53,634 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 18:02:06,781 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 18:02:06,782 - Odczytano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:02:06,782 - Odczytano klucz AES: d23a771a34be7b551051212d3fc169a692026413ec03a0ea59ca8189785e938d
+2025-01-16 18:02:06,782 - Odczytano klucz HMAC: 5583b99f0a359f971970cd44d27a50d16eccb2ae063ef3228cccba3d05692ce9
+2025-01-16 18:02:06,782 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-16 18:02:06,782 - Odczytano zaszyfrowany plik: 5648 bajtów
+2025-01-16 18:02:06,783 - Odczytano IV: a9811d3b820026527dbf57f97dbba733
+2025-01-16 18:02:06,783 - Odczytano zaszyfrowane dane: 5632 bajtów
+2025-01-16 18:02:06,792 - Odczytano HMAC: 00128926adb4897ed59d4285c2573fb0cf891be21235b67b0372f4abd0e0e1c8
+2025-01-16 18:02:06,792 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-16 18:02:06,793 - Odszyfrowano dane: 5632 bajtów
+2025-01-16 18:02:06,793 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 18:02:06,794 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 18:02:06,794 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 18:02:06,794 - Usuniêto pliki klucza i HMAC.
+2025-01-16 18:02:06,795 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 18:02:06,795 - Usuniêto zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 18:46:15,432 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 18:46:15,434 - Wygenerowano klucz AES: 42599fb51f984094465ff90af3b2b49de7e0c5990a2e01617ebd4d1478d9bde6
+2025-01-16 18:46:15,434 - Wygenerowano IV: 97156dc268a879a2eb3ae3fc5e7e31eb
+2025-01-16 18:46:15,435 - Odczytano plik do zaszyfrowania: 5632 bajtów
+2025-01-16 18:46:15,445 - Zaszyfrowano dane: 5632 bajtów
+2025-01-16 18:46:15,445 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 18:46:15,446 - Wygenerowano HMAC: 0ed634900013f6c3d16c268d26601d2b89ca8a1e3c0f9f806b95765a4848d4b8
+2025-01-16 18:46:15,446 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 18:46:15,447 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:46:15,447 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:46:15,447 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 18:46:47,714 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 18:46:47,715 - Odczytano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:46:47,715 - Odczytano klucz AES: 42599fb51f984094465ff90af3b2b49de7e0c5990a2e01617ebd4d1478d9bde6
+2025-01-16 18:46:47,715 - Odczytano klucz HMAC: ccf53ff9f8e0860fc2a97e6c0c41dc097fb2dbf9540859179e8e8c6bc70a228c
+2025-01-16 18:46:47,715 - Wygenerowano identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:46:47,715 - Wygenerowano aktualny identyfikator pliku: 0dd6c716e2ee6ccb45c8d3a911f151afb37f8353139c862abba629526ff4e817
+2025-01-16 18:46:47,715 - Odczytano zaszyfrowany plik: 5648 bajtów
+2025-01-16 18:46:47,715 - Odczytano IV: 97156dc268a879a2eb3ae3fc5e7e31eb
+2025-01-16 18:46:47,715 - Odczytano zaszyfrowane dane: 5632 bajtów
+2025-01-16 18:46:47,722 - Odczytano HMAC: 0ed634900013f6c3d16c268d26601d2b89ca8a1e3c0f9f806b95765a4848d4b8
+2025-01-16 18:46:47,722 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-16 18:46:47,722 - Odszyfrowano dane: 5632 bajtów
+2025-01-16 18:46:47,723 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt
+2025-01-16 18:46:47,723 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.key
+2025-01-16 18:46:47,723 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc.hmac
+2025-01-16 18:46:47,724 - Usuniêto pliki klucza i HMAC.
+2025-01-16 18:46:47,724 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-16 18:46:47,724 - Usuniêto zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/1/Test/adsasdas.txt.enc
+2025-01-18 16:10:33,492 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt
+2025-01-18 16:10:33,494 - Wygenerowano klucz AES: 3952609dbe173136b7ef80de6af40373801df4d5847e11927dd0d61d06d8772c
+2025-01-18 16:10:33,494 - Wygenerowano IV: a2afec5aabea9e19a180310e590e8b32
+2025-01-18 16:10:33,503 - Odczytano plik do zaszyfrowania: 980 bajtów
+2025-01-18 16:10:33,542 - Zaszyfrowano dane: 980 bajtów
+2025-01-18 16:10:33,542 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc
+2025-01-18 16:10:33,545 - Wygenerowano HMAC: 8c3e3c158299f059811dfcac670d140e75b53ec33dc27255eb046285b8507a7f
+2025-01-18 16:10:33,547 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc.hmac
+2025-01-18 16:10:33,547 - Wygenerowano identyfikator pliku: cf1bbe3ac00376af800e59989cdbc3d725b820f2fa35adf9c6478f014661b42e
+2025-01-18 16:10:33,547 - Wygenerowano identyfikator pliku: cf1bbe3ac00376af800e59989cdbc3d725b820f2fa35adf9c6478f014661b42e
+2025-01-18 16:10:33,548 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.key
+2025-01-18 16:10:33,548 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt
+2025-01-18 16:10:51,254 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc
+2025-01-18 16:10:51,254 - Odczytano identyfikator pliku: cf1bbe3ac00376af800e59989cdbc3d725b820f2fa35adf9c6478f014661b42e
+2025-01-18 16:10:51,254 - Odczytano klucz AES: 3952609dbe173136b7ef80de6af40373801df4d5847e11927dd0d61d06d8772c
+2025-01-18 16:10:51,254 - Odczytano klucz HMAC: 13ac9625d4c61234145aec449e7e046d3f08c847d92364b2409af8e63e8a2000
+2025-01-18 16:10:51,255 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-18 16:10:51,255 - Odczytano zaszyfrowany plik: 996 bajtów
+2025-01-18 16:10:51,255 - Odczytano IV: a2afec5aabea9e19a180310e590e8b32
+2025-01-18 16:10:51,255 - Odczytano zaszyfrowane dane: 980 bajtów
+2025-01-18 16:10:51,261 - Odczytano HMAC: 8c3e3c158299f059811dfcac670d140e75b53ec33dc27255eb046285b8507a7f
+2025-01-18 16:10:51,261 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-18 16:10:51,262 - Odszyfrowano dane: 980 bajtów
+2025-01-18 16:10:51,262 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt
+2025-01-18 16:10:51,262 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.key
+2025-01-18 16:10:51,263 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc.hmac
+2025-01-18 16:10:51,263 - Usuniêto pliki klucza i HMAC.
+2025-01-18 16:10:51,263 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc
+2025-01-18 16:10:51,263 - Usuniêto zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc
+2025-01-18 16:11:35,257 - Rozpoczêto szyfrowanie pliku: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt
+2025-01-18 16:11:35,257 - Wygenerowano klucz AES: 50e639059cca89ee978cdd30ab65f5e92d3b714251598245eb94e4bc411ce4fb
+2025-01-18 16:11:35,257 - Wygenerowano IV: 28d3f4c1923173094c084633501403f3
+2025-01-18 16:11:35,257 - Odczytano plik do zaszyfrowania: 980 bajtów
+2025-01-18 16:11:35,258 - Zaszyfrowano dane: 980 bajtów
+2025-01-18 16:11:35,258 - Zapisano zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc
+2025-01-18 16:11:35,258 - Wygenerowano HMAC: 971312adf84c9fb2a5ed8674742094b948a5869f40737f80ad73c38a82896b2a
+2025-01-18 16:11:35,259 - Zapisano HMAC do pliku: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc.hmac
+2025-01-18 16:11:35,259 - Wygenerowano identyfikator pliku: cf1bbe3ac00376af800e59989cdbc3d725b820f2fa35adf9c6478f014661b42e
+2025-01-18 16:11:35,260 - Wygenerowano identyfikator pliku: cf1bbe3ac00376af800e59989cdbc3d725b820f2fa35adf9c6478f014661b42e
+2025-01-18 16:11:35,260 - Zapisano klucz AES i HMAC do pliku: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.key
+2025-01-18 16:11:35,261 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt
+2025-01-18 16:12:34,995 - Rozpoczêto odszyfrowywanie pliku: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc
+2025-01-18 16:12:34,996 - Odczytano identyfikator pliku: cf1bbe3ac00376af800e59989cdbc3d725b820f2fa35adf9c6478f014661b42e
+2025-01-18 16:12:34,996 - Odczytano klucz AES: 50e639059cca89ee978cdd30ab65f5e92d3b714251598245eb94e4bc411ce4fb
+2025-01-18 16:12:34,996 - Odczytano klucz HMAC: e764cfdf745ec9a5fb34c0210d94a1fc7447c62ac117c0f09456a5e0f5ec6404
+2025-01-18 16:12:34,996 - Oryginalny plik nie istnieje. Pominiêto weryfikacjê identyfikatora.
+2025-01-18 16:12:34,996 - Odczytano zaszyfrowany plik: 996 bajtów
+2025-01-18 16:12:34,996 - Odczytano IV: 28d3f4c1923173094c084633501403f3
+2025-01-18 16:12:34,996 - Odczytano zaszyfrowane dane: 980 bajtów
+2025-01-18 16:12:35,003 - Odczytano HMAC: 971312adf84c9fb2a5ed8674742094b948a5869f40737f80ad73c38a82896b2a
+2025-01-18 16:12:35,004 - Weryfikacja HMAC zakoñczona sukcesem.
+2025-01-18 16:12:35,004 - Odszyfrowano dane: 980 bajtów
+2025-01-18 16:12:35,005 - Zapisano odszyfrowany plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt
+2025-01-18 16:12:35,005 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.key
+2025-01-18 16:12:35,006 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc.hmac
+2025-01-18 16:12:35,006 - Usuniêto pliki klucza i HMAC.
+2025-01-18 16:12:35,006 - Usuniêto plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc
+2025-01-18 16:12:35,006 - Usuniêto zaszyfrowany plik: C:/Users/Pietr00/Desktop/Test/18.01.2025/Nowy Dokument tekstowy.txt.enc
