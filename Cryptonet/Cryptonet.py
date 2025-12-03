@@ -3,6 +3,7 @@
 import os
 import hashlib
 import secrets
+import datetime
 import logging
 import json
 import sys
@@ -14,10 +15,10 @@ import cv2
 import numpy as np
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QLabel, QVBoxLayout, QPushButton, QFileDialog,
-    QWidget, QMessageBox, QDialog, QTreeWidget, QTreeWidgetItem, QCheckBox, QLineEdit, QGroupBox, QHBoxLayout
+    QWidget, QMessageBox, QDialog, QTreeWidget, QTreeWidgetItem, QCheckBox, QLineEdit, QGroupBox
 )
 from PyQt6.QtCore import Qt, QDir
-from PyQt6.QtGui import QIcon, QFont, QPixmap
+from PyQt6.QtGui import QIcon, QFont
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, hmac
@@ -259,12 +260,49 @@ def decrypt_file(file_path, key_path, password=None, use_rsa=False, delete_keys=
         logging.error(f"Błąd podczas odszyfrowywania pliku {file_path}: {e}")
         return str(e)
 
-# Funkcja hashowania hasła
-def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+# Parametry hashowania haseł
+PASSWORD_ITERATIONS = 120000
+PASSWORD_SALT_BYTES = 16
+
+
+# Funkcja walidująca złożoność hasła
+def validate_password_strength(password):
+    errors = []
+    if len(password) < 10:
+        errors.append("Hasło musi mieć co najmniej 10 znaków.")
+    if not any(char.isupper() for char in password):
+        errors.append("Hasło musi zawierać wielką literę.")
+    if not any(char.islower() for char in password):
+        errors.append("Hasło musi zawierać małą literę.")
+    if not any(char.isdigit() for char in password):
+        errors.append("Hasło musi zawierać cyfrę.")
+    if not any(char in "!@#$%^&*()_-+=[]{};:'\",.<>?/" for char in password):
+        errors.append("Hasło musi zawierać znak specjalny.")
+    return errors
+
+
+# Funkcja hashowania hasła (PBKDF2)
+def hash_password(password, salt=None, iterations=PASSWORD_ITERATIONS):
+    salt = salt or secrets.token_bytes(PASSWORD_SALT_BYTES)
+    derived = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, iterations)
+    return derived.hex(), salt.hex(), iterations
+
+
+def verify_password(password, user_record):
+    """Sprawdza hasło zarówno dla nowych, jak i starszych kont."""
+    if "salt" in user_record:
+        stored_hash = user_record.get("password_hash", "")
+        salt = bytes.fromhex(user_record.get("salt", ""))
+        iterations = user_record.get("iterations", PASSWORD_ITERATIONS)
+        new_hash, _, _ = hash_password(password, salt=salt, iterations=iterations)
+        return secrets.compare_digest(stored_hash, new_hash)
+
+    # Obsługa starszego schematu SHA-256 bez soli
+    legacy_hash = hashlib.sha256(password.encode()).hexdigest()
+    return secrets.compare_digest(user_record.get("password_hash", ""), legacy_hash)
 
 # Funkcja rejestracji użytkownika
-def register_user(username, password):
+def register_user(username, password, email=None):
     if os.path.exists("users.json"):
         with open("users.json", "r") as f:
             data = json.load(f)
@@ -272,12 +310,20 @@ def register_user(username, password):
         data = {"users": []}
 
     for user in data["users"]:
-        if user["username"] == username:
+        if user["username"].lower() == username.lower():
             return False  # Użytkownik już istnieje
+        if email and user.get("email", "").lower() == email.lower():
+            return False  # Email już użyty
+
+    password_hash, salt, iterations = hash_password(password)
 
     data["users"].append({
         "username": username,
-        "password_hash": hash_password(password)
+        "email": email or "",
+        "password_hash": password_hash,
+        "salt": salt,
+        "iterations": iterations,
+        "created_at": datetime.datetime.utcnow().isoformat() + "Z",
     })
 
     with open("users.json", "w") as f:
@@ -294,7 +340,7 @@ def login_user(username, password):
         data = json.load(f)
 
     for user in data["users"]:
-        if user["username"] == username and user["password_hash"] == hash_password(password):
+        if user["username"].lower() == username.lower() and verify_password(password, user):
             return True  # Logowanie zakończone sukcesem
 
     return False  # Nieprawidłowa nazwa użytkownika lub hasło
@@ -363,10 +409,16 @@ class RegisterDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Rejestracja")
-        self.setGeometry(200, 200, 300, 200)
+        self.setGeometry(200, 200, 360, 280)
 
         # Layout
         layout = QVBoxLayout()
+
+        info_label = QLabel(
+            "Utwórz konto spełniające wymogi bezpieczeństwa (10 znaków, wielka i mała litera, cyfra, znak specjalny)."
+        )
+        info_label.setWordWrap(True)
+        layout.addWidget(info_label)
 
         # Pole do wprowadzenia nazwy użytkownika
         self.username_label = QLabel("Nazwa użytkownika:")
@@ -374,12 +426,25 @@ class RegisterDialog(QDialog):
         self.username_input = QLineEdit()
         layout.addWidget(self.username_input)
 
+        # Pole e-mail (opcjonalne, ale walidowane na unikalność)
+        self.email_label = QLabel("Adres e-mail (opcjonalnie):")
+        layout.addWidget(self.email_label)
+        self.email_input = QLineEdit()
+        layout.addWidget(self.email_input)
+
         # Pole do wprowadzenia hasła
         self.password_label = QLabel("Hasło:")
         layout.addWidget(self.password_label)
         self.password_input = QLineEdit()
         self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
         layout.addWidget(self.password_input)
+
+        # Potwierdzenie hasła
+        self.confirm_password_label = QLabel("Powtórz hasło:")
+        layout.addWidget(self.confirm_password_label)
+        self.confirm_password_input = QLineEdit()
+        self.confirm_password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        layout.addWidget(self.confirm_password_input)
 
         # Przycisk rejestracji
         self.register_button = QPushButton("Zarejestruj")
@@ -396,16 +461,27 @@ class RegisterDialog(QDialog):
     def attempt_register(self):
         username = self.username_input.text()
         password = self.password_input.text()
+        confirm_password = self.confirm_password_input.text()
+        email = self.email_input.text()
 
         if not username or not password:
             QMessageBox.warning(self, "Błąd", "Nazwa użytkownika i hasło nie mogą być puste.")
             return
 
-        if register_user(username, password):
+        if password != confirm_password:
+            QMessageBox.warning(self, "Błąd", "Hasła muszą być identyczne.")
+            return
+
+        errors = validate_password_strength(password)
+        if errors:
+            QMessageBox.warning(self, "Błąd", "\n".join(errors))
+            return
+
+        if register_user(username, password, email=email):
             QMessageBox.information(self, "Sukces", "Rejestracja zakończona sukcesem.")
             self.accept()  # Zamyka okno rejestracji i zwraca QDialog.DialogCode.Accepted
         else:
-            QMessageBox.warning(self, "Błąd", "Użytkownik już istnieje.")
+            QMessageBox.warning(self, "Błąd", "Użytkownik lub e-mail już istnieje.")
 
     def back_to_login(self):
         self.reject()  # Zamyka okno rejestracji i zwraca QDialog.DialogCode.Rejected
@@ -416,47 +492,78 @@ class FileEncryptionApp(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Szyfrowanie i odszyfrowywanie plików - PyQt6")
-        self.setGeometry(100, 100, 800, 600)
+        self.setGeometry(100, 100, 900, 680)
 
         # Ustawienie ikony aplikacji
         self.setWindowIcon(QIcon("icon.png"))
 
         # Layout
         layout = QVBoxLayout()
+        layout.setContentsMargins(16, 16, 16, 16)
+        layout.setSpacing(12)
         central_widget = QWidget()
         central_widget.setLayout(layout)
         self.setCentralWidget(central_widget)
 
-        # Przeglądarka plików (QTreeWidget zamiast QFileSystemModel)
+        # Nagłówek aplikacji
+        header = QGroupBox("🔒 Cryptonet")
+        header_layout = QVBoxLayout()
+        header_title = QLabel("Bezpieczne szyfrowanie i odszyfrowywanie plików")
+        header_title.setFont(QFont("Arial", 18, QFont.Weight.Bold))
+        header_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        header_subtitle = QLabel("Zadbaj o poufność dokumentów dzięki intuicyjnemu interfejsowi i kontroli nad kluczami.")
+        header_subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        header_subtitle.setWordWrap(True)
+        header_layout.addWidget(header_title)
+        header_layout.addWidget(header_subtitle)
+        header.setLayout(header_layout)
+        layout.addWidget(header)
+
+        # Sekcja eksploratora plików
+        browser_group = QGroupBox("📁 Twoje pliki")
+        browser_layout = QVBoxLayout()
         self.file_browser = QTreeWidget(self)
         self.file_browser.setHeaderLabels(["Nazwa pliku"])
         self.file_browser.itemDoubleClicked.connect(self.on_file_selected)
-        layout.addWidget(self.file_browser)
+        browser_layout.addWidget(self.file_browser)
 
-        # Przycisk do odświeżania listy plików
-        self.refresh_button = QPushButton("Odśwież listę plików")
+        self.refresh_button = QPushButton("🔄 Odśwież listę")
         self.refresh_button.clicked.connect(self.refresh_file_list)
-        layout.addWidget(self.refresh_button)
+        browser_layout.addWidget(self.refresh_button)
+        browser_group.setLayout(browser_layout)
+        layout.addWidget(browser_group)
 
-        # Kafel szyfrowania
-        self.encrypt_label = DragDropLabel(
-            self,
-            on_drop=self.handle_encrypt_drop
-        )
+        # Sekcja szyfrowania/dekodowania
+        actions_group = QGroupBox("⚙️ Operacje")
+        actions_layout = QVBoxLayout()
+        self.encrypt_label = DragDropLabel(self, on_drop=self.handle_encrypt_drop)
         self.encrypt_label.setText("Przeciągnij pliki tutaj, aby je zaszyfrować")
         self.encrypt_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.encrypt_label.setStyleSheet("background-color: lightgray; border: 2px dashed black;")
+        self.encrypt_label.setStyleSheet("background-color: #fdf6e3; border: 2px dashed #e67e22; color: #a84300; padding: 12px;")
         self.encrypt_label.setFixedHeight(150)
-        layout.addWidget(self.encrypt_label)
+        actions_layout.addWidget(self.encrypt_label)
 
-        # Przycisk odszyfrowywania
-        self.decrypt_button = QPushButton("Odszyfruj plik")
+        self.decrypt_button = QPushButton("🔓 Odszyfruj plik")
         self.decrypt_button.clicked.connect(self.open_decrypt_dialog)
-        layout.addWidget(self.decrypt_button)
+        actions_layout.addWidget(self.decrypt_button)
 
-        # Checkbox do usuwania oryginalnego pliku po zaszyfrowaniu
         self.delete_original_checkbox = QCheckBox("Usuń oryginalny plik po zaszyfrowaniu")
-        layout.addWidget(self.delete_original_checkbox)
+        actions_layout.addWidget(self.delete_original_checkbox)
+        actions_group.setLayout(actions_layout)
+        layout.addWidget(actions_group)
+
+        # Sekcja wskazówek
+        tips_group = QGroupBox("💡 Wskazówki bezpieczeństwa")
+        tips_layout = QVBoxLayout()
+        tips_text = QLabel(
+            "• Kliknij dwukrotnie plik, aby szybko go zaszyfrować.\n"
+            "• Przechowuj pliki .key w bezpiecznym miejscu.\n"
+            "• Używaj silnych haseł i regularnie je aktualizuj."
+        )
+        tips_text.setWordWrap(True)
+        tips_layout.addWidget(tips_text)
+        tips_group.setLayout(tips_layout)
+        layout.addWidget(tips_group)
 
         # Odśwież listę plików przy starcie
         self.refresh_file_list()
@@ -609,44 +716,51 @@ if __name__ == "__main__":
     # Styl CSS dla aplikacji
     app.setStyleSheet("""
         QMainWindow {
-            background-color: #f0f0f0;
-        }
-        QPushButton {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-        QPushButton:hover {
-            background-color: #45a049;
+            background-color: #eef2f7;
         }
         QLabel {
             font-size: 14px;
-            color: #333;
+            color: #2c3e50;
         }
-        QTreeWidget {
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        QPushButton {
+            background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #4CAF50, stop:1 #2e8b57);
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            font-size: 15px;
+            border-radius: 6px;
+        }
+        QPushButton:hover {
+            background-color: #3f9e4f;
+        }
+        QLineEdit, QTreeWidget {
+            background-color: #ffffff;
+            border: 1px solid #d4d9e1;
+            border-radius: 6px;
+            padding: 6px;
+        }
+        QTreeWidget::item:selected {
+            background-color: #d6ecff;
+            color: #1b3a57;
         }
         QCheckBox {
             font-size: 14px;
-            color: #333;
-        }
-        QLineEdit {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            color: #2c3e50;
         }
         QGroupBox {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-top: 10px;
-            padding-top: 15px;
-            font-size: 16px;
+            border: 1px solid #d4d9e1;
+            border-radius: 8px;
+            margin-top: 12px;
+            padding: 16px;
+            background: #ffffff;
+            font-size: 15px;
             font-weight: bold;
+        }
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            left: 12px;
+            padding: 0px 4px;
+            color: #1b3a57;
         }
     """)
 
